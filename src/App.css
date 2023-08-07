@@ -1,5 +1,39 @@
+body{
+  background-color: #121212;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+.movies-section {
+  background-color: #1D1D1D;
+  padding: 40px 50px 60px;
+  border-radius: 10px;
+}
+.movies-container {
+  padding: 20px 0px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 20px;
+  column-gap: 10px;
+}
+.movies-container > div {
+  max-height: 100%;
+}
+.movie-adder {
+  padding: 20px 50px 20px;
+  background-color: #1D1D1D;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.input-group > span:first-child {
+  min-width: 150px;
+}
+.movie-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
