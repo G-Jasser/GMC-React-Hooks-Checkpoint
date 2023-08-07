@@ -7,26 +7,20 @@ import Filter from './Filter'
 
 const MovieList = () => {
   const [moviesList, setMoviesList] = useState(movies)
+  const [movieDetails, setMovieDetails] = useState({ title: "", rating: 0, description: "", posterURL: "" })
 
-  const [title, setTitle] = useState("")
-  const handleTitleChange = (e) => setTitle(e.target.value)
+  const handleTitleChange = (e) => setMovieDetails({ title: e.target.value, ...movieDetails })
+  const handleRatingChange = (e) => setMovieDetails({ rating: e.target.value, ...movieDetails })
+  const handleDescriptionChange = (e) => setMovieDetails({ description: e.target.value, ...movieDetails })
+  const handlePosterURLChange = (e) => setMovieDetails({ posterURL: e.target.value, ...movieDetails })
 
-  const [rating, setRating] = useState(0.0)
-  const handleRatingChange = (e) => setRating(e.target.value)
-
-  const [description, setDescription] = useState("")
-  const handleDescriptionChange = (e) => setDescription(e.target.value)
-
-  const [posterURL, setPosterURL] = useState("")
-  const handlePosterURLChange = (e) => setPosterURL(e.target.value)
-
-  // const [movieDetails, setMovieDetails] = useState({title:"",rating:0,description:"",posterURL:""})
+  const handleAddMovie = () => setMoviesList([movieDetails, ...moviesList])
+  const handleClear = () => setMovieDetails({ title: "", rating: 0, description: "", posterURL: "" })
 
   const [searchByTitle, setSearchByTitle] = useState("")
   const [searchByRating, setSearchByRating] = useState(0)
 
-  const handleAddMovie = () => setMoviesList([{ title, rating, description, posterURL }, ...moviesList])
-  const handleClear = () => { setTitle(""); setRating(0, 0); setDescription(""); setPosterURL("") }
+
 
 
 
