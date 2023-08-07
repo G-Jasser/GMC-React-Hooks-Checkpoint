@@ -21,7 +21,7 @@ const MovieList = () => {
   return (
     <>
       <div className='movie-adder'>
-        <h3>Movie Adder:</h3>
+        <h3 style={{marginBottom:20}}>Movie Adder:</h3>
         <InputGroup className="mb-3">
           <InputGroup.Text>
             Title:
