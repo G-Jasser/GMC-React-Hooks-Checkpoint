@@ -15,8 +15,18 @@ const MovieTrailer = () => {
       ( movieDetails ?
         ( 
         <div className='movie-adder'>
-          <div className='col-12'>
-            <h1> Hello: {movieDetails.title} </h1>
+          <div className='col-6'>
+            <h1>{movieDetails.title}</h1>
+            <br />
+            <h3>Trailer:</h3>
+            <iframe width="560" height="315" 
+            src={movieDetails.trailer}
+            title="YouTube video player" frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowFullScreen></iframe>
+            <br />
+            <p>{movieDetails.description}</p>
+
           </div>
         </div>) : <></>
       )
