@@ -1,15 +1,22 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 
 const MovieTrailer = () => {
   const movieID = useParams()
+  const [listOfMovies] = useOutletContext()
+
+  const movie = listOfMovies.filter(function (film) {
+    return film.path == movieID.movieID;
+})
+  const [movieDetails] = movie
+
   return (
     
-      ( movieID ?
+      ( movieDetails ?
         ( 
         <div className='movie-adder'>
           <div className='col-12'>
-            <h1> Hello: {} </h1>
+            <h1> Hello: {movieDetails.title} </h1>
           </div>
         </div>) : <></>
       )

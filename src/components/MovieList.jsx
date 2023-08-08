@@ -5,10 +5,9 @@ import { Button, Form, InputGroup } from 'react-bootstrap'
 import Filter from './Filter'
 import { Outlet } from 'react-router-dom'
 
-
 const MovieList = () => {
   const [moviesList, setMoviesList] = useState(movies)
-  const [movieDetails, setMovieDetails] = useState({ title: "", rating: 0, description: "", posterURL: "" })
+  const [movieDetails, setMovieDetails] = useState({ title: "", rating: 0, description: "", posterURL: "", path:"" })
 
   const handleTitleChange = (e) => setMovieDetails({ title: e.target.value, ...movieDetails })
   const handleRatingChange = (e) => setMovieDetails({ rating: e.target.value, ...movieDetails })
@@ -20,10 +19,6 @@ const MovieList = () => {
 
   const [searchByTitle, setSearchByTitle] = useState("")
   const [searchByRating, setSearchByRating] = useState(0)
-
-
-
-
 
   return (
     <>
@@ -65,7 +60,7 @@ const MovieList = () => {
       </div>
 
       <>
-        <Outlet/>
+        <Outlet context={[moviesList]}/>
       </>
 
       <div className='movies-section'>
@@ -77,7 +72,7 @@ const MovieList = () => {
                 || movie.description.toLowerCase().includes(searchByTitle.toLowerCase()))
                 && movie.rating >= searchByRating
             ).map(
-              (movie) => <MovieCard movieDetails={movie} key={movie.path} />
+              (movie) => <MovieCard movieDetails={movie} key={movie.title} />
             )
           }
         </div>
