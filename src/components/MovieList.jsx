@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import movies from '../assets/movies'
 import MovieCard from './MovieCard'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import Filter from './Filter'
+import { Outlet } from 'react-router-dom'
 
 
 const MovieList = () => {
@@ -26,40 +27,46 @@ const MovieList = () => {
 
   return (
     <>
-      <div className='movie-adder'>
-        <h3 style={{ marginBottom: 20 }}>Movie Adder:</h3>
-        <InputGroup className="mb-3">
-          <InputGroup.Text>
-            Title:
-          </InputGroup.Text>
-          <Form.Control placeholder="Movie Title" onChange={handleTitleChange} />
-        </InputGroup>
+      <div className='row'>
+        <div className='movie-adder col-lg-6 col-12'>
+          <h3 style={{ marginBottom: 20 }}>Movie Adder:</h3>
+          <InputGroup className="mb-3">
+            <InputGroup.Text>
+              Title:
+            </InputGroup.Text>
+            <Form.Control placeholder="Movie Title" onChange={handleTitleChange} />
+          </InputGroup>
 
-        <InputGroup className="mb-3">
-          <InputGroup.Text>Rating:</InputGroup.Text>
-          <Form.Control placeholder="x out of 10" onChange={handleRatingChange} />
-          <InputGroup.Text>/10</InputGroup.Text>
-        </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text>Rating:</InputGroup.Text>
+            <Form.Control placeholder="x out of 10" onChange={handleRatingChange} />
+            <InputGroup.Text>/10</InputGroup.Text>
+          </InputGroup>
 
-        <InputGroup className='mb-3'>
-          <InputGroup.Text>Description:</InputGroup.Text>
-          <Form.Control as="textarea" placeholder="Movie Description" onChange={handleDescriptionChange} />
-        </InputGroup>
+          <InputGroup className='mb-3'>
+            <InputGroup.Text>Description:</InputGroup.Text>
+            <Form.Control as="textarea" placeholder="Movie Description" onChange={handleDescriptionChange} />
+          </InputGroup>
 
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon3">
-            Poster URL:
-          </InputGroup.Text>
-          <Form.Control id="basic-url" aria-describedby="basic-addon3" placeholder='https://example.com/poster.png' onChange={handlePosterURLChange} />
-        </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon3">
+              Poster URL:
+            </InputGroup.Text>
+            <Form.Control id="basic-url" aria-describedby="basic-addon3" placeholder='https://example.com/poster.png' onChange={handlePosterURLChange} />
+          </InputGroup>
 
-        <div className='movie-buttons'>
-          <Button variant="outline-primary" onClick={handleAddMovie}>Add</Button>
-          <Button variant="outline-secondary" onClick={handleClear}>Clear</Button>
+          <div className='movie-buttons'>
+            <Button variant="outline-primary" onClick={handleAddMovie}>Add</Button>
+            <Button variant="outline-secondary" onClick={handleClear}>Clear</Button>
+          </div>
         </div>
+
+        <Filter setSearchByTitle={setSearchByTitle} setSearchByRating={setSearchByRating} />
       </div>
 
-      <Filter setSearchByTitle={setSearchByTitle} setSearchByRating={setSearchByRating} />
+      <>
+        <Outlet/>
+      </>
 
       <div className='movies-section'>
         <h3>Movies Section:</h3>
@@ -70,7 +77,7 @@ const MovieList = () => {
                 || movie.description.toLowerCase().includes(searchByTitle.toLowerCase()))
                 && movie.rating >= searchByRating
             ).map(
-              (movie) => <MovieCard movieDetails={movie} key={movie.title} />
+              (movie) => <MovieCard movieDetails={movie} key={movie.path} />
             )
           }
         </div>
