@@ -8,7 +8,7 @@ const Filter = ({ setSearchByTitle, setSearchByRating }) => {
 
 
   return (
-    <div className='movie-adder'>
+    <div className='movie-adder col-lg-5 col-12'>
       <h3 style={{ marginBottom: 20 }}>Movie Filter:</h3>
       <InputGroup className="mb-3">
         <InputGroup.Text>

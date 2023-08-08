@@ -37,3 +37,8 @@ body{
   gap: 10px;
   justify-content: center;
 }
+.row {
+  margin: auto;
+  justify-content: space-between;
+  max-width: 1216px;
+}
