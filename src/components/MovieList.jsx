@@ -7,15 +7,36 @@ import { Outlet } from 'react-router-dom'
 
 const MovieList = () => {
   const [moviesList, setMoviesList] = useState(movies)
-  const [movieDetails, setMovieDetails] = useState({ title: "", rating: 0, description: "", posterURL: "", path:"" })
 
-  const handleTitleChange = (e) => setMovieDetails({ title: e.target.value, ...movieDetails })
-  const handleRatingChange = (e) => setMovieDetails({ rating: e.target.value, ...movieDetails })
-  const handleDescriptionChange = (e) => setMovieDetails({ description: e.target.value, ...movieDetails })
-  const handlePosterURLChange = (e) => setMovieDetails({ posterURL: e.target.value, ...movieDetails })
+  const [_title, setTitle] = useState("")
+  const [_path, setPath] = useState("")
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value)
+    const convertTitleToPath = e.target.value.toLowerCase().split(" ").join("-")
+    setPath(convertTitleToPath)
+  }
 
-  const handleAddMovie = () => setMoviesList([movieDetails, ...moviesList])
-  const handleClear = () => setMovieDetails({ title: "", rating: 0, description: "", posterURL: "" })
+  const [_rating, setRating] = useState("")
+  const handleRatingChange = (e) => setRating(e.target.value)
+
+  const [_description, setDescription] = useState("")
+  const handleDescriptionChange = (e) => setDescription(e.target.value)
+
+  const [_posterURL, setPosterURL] = useState("")
+  const handlePosterURLChange = (e) => setPosterURL(e.target.value)
+
+  const [_trailer, setTrailer] = useState("")
+  const handleTrailerChange = (e) => setTrailer(e.target.value)
+
+  const handleAddMovie = () => setMoviesList([{
+    "title": _title,
+    "description": _description,
+    "rating": _rating,
+    "posterURL": _posterURL,
+    "trailer": _trailer,
+    "path": _path,
+  }, ...moviesList])
+  const handleClear = () => console.log("Imagine that the form is cleared please.", moviesList[0]);
 
   const [searchByTitle, setSearchByTitle] = useState("")
   const [searchByRating, setSearchByRating] = useState(0)
@@ -50,6 +71,13 @@ const MovieList = () => {
             <Form.Control id="basic-url" aria-describedby="basic-addon3" placeholder='https://example.com/poster.png' onChange={handlePosterURLChange} />
           </InputGroup>
 
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon3">
+              Trailer URL:
+            </InputGroup.Text>
+            <Form.Control id="basic-url" aria-describedby="basic-addon3" placeholder='https://www.youtube-nocookie.com/embed/(videoID)' onChange={handleTrailerChange} />
+          </InputGroup>
+
           <div className='movie-buttons'>
             <Button variant="outline-primary" onClick={handleAddMovie}>Add</Button>
             <Button variant="outline-secondary" onClick={handleClear}>Clear</Button>
@@ -60,7 +88,7 @@ const MovieList = () => {
       </div>
 
       <>
-        <Outlet context={[moviesList]}/>
+        <Outlet context={[moviesList]} />
       </>
 
       <div className='movies-section'>

@@ -42,3 +42,7 @@ body{
   justify-content: space-between;
   max-width: 1216px;
 }
+
+.movies-container a {
+  text-decoration: none;
+}
