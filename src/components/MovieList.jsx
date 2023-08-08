@@ -36,7 +36,7 @@ const MovieList = () => {
     "trailer": _trailer,
     "path": _path,
   }, ...moviesList])
-  const handleClear = () => console.log("Imagine that the form is cleared please.", moviesList[0]);
+  const handleClear = () => console.log("Imagine that the form is cleared please.");
 
   const [searchByTitle, setSearchByTitle] = useState("")
   const [searchByRating, setSearchByRating] = useState(0)
@@ -75,7 +75,7 @@ const MovieList = () => {
             <InputGroup.Text id="basic-addon3">
               Trailer URL:
             </InputGroup.Text>
-            <Form.Control id="basic-url" aria-describedby="basic-addon3" placeholder='https://www.youtube-nocookie.com/embed/(videoID)' onChange={handleTrailerChange} />
+            <Form.Control id="basic-url" aria-describedby="basic-addon3" placeholder="YouTube's video ID( e.g: edQw4w9WgXcQ )" onChange={handleTrailerChange} />
           </InputGroup>
 
           <div className='movie-buttons'>
